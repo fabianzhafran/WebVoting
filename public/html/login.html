@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>e-Vote Psikologi Universitas Kristen Maranatha</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="e-Vote Psikologi">
+    <meta name="keywords" content="e-Vote Psikologi">
+    <meta name="author" content="Muhammad Daru Darmakusuma">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2deb3c3ae0.js"></script>
+    <link rel='stylesheet' href='./stylesheets/styles.css' />
+    <script>
+        function toggleSection(sectionName){
+        
+        var x = document.getElementsByTagName("section");
+        for (let i = 0; i < x.length; i++) {
+            const element = x[i];
+            if(element.className!=sectionName)element.style.display = "none";
+        }
+        
+        var section = document.getElementById(sectionName);
+        section.style.display = "block";
+        }
+    </script>
+</head>
+
+<body scroll="no" style="overflow: hidden">
+    <div id="header">
+      <img src="images/logo.png" alt="logo" />
+      <img src="images/logo2.png" alt="logo" />
+      <h3>e-Vote Psikologi Universitas Kristen Maranatha</h3>
+    </div>
+    <!-- Identitas -->
+    <section id='identitas'>
+        <div class="container-fluid" id="login-page">
+            <div class="row justify-content-center" id="login-row">
+                <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 my-auto1">
+                    <form class="card form-container" action="Fabian" method="POST">
+                        <div class="text-center">
+                            <h3>Identitas</h3>
+                        </div>
+                        <div class="form-group">
+                                <label> Nama Lengkap </label>
+                                <input type="text" class="form-control" id="fullname" placeholder="Nama Lengkap" required="">
+                        </div>
+                        <div class="form-group">
+                            <label> Email </label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" required="">
+                        </div>
+                        <div class="form-group">
+                            <label> NRP/NIK </label>
+                            <input type="number" class="form-control" id="nrp" minlength="6" placeholder="NRP/NIK" required="">    
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary btn-block but1" type="submit" href="#" onclick=>Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Identitas -->
+
+    <!-- Token -->
+    <section id='token'>
+            <div class="container-fluid" id="login-page">
+                <div class="row justify-content-center" id="login-row">
+                    <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 my-auto2">
+                        <form class="card form-container" action="Fabian" method="POST">
+                            <div class="form-group">
+                                    <label> Token </label>
+                                    <input type="text" class="form-control" id="token" placeholder="Token" required="">
+                            </div>
+                            <div>
+                                <label id="check">Check your token in your e-mail:</label>
+                            </div>
+                            <div>
+                                <label id="check">lalala@gmail.com</label>
+                            </div>
+                            <div>
+                                <a href="javascript:toggleSection('changemail')" id="change">Change e-mail?</a>
+                            </div>
+                            <div>
+                                <button class="btn btn-secondary btn-block but1" type="submit">Next</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- End of Token -->
+
+    <!-- Change Email -->
+    <section id='changemail'>
+            <div class="container-fluid" id="login-page">
+                <div class="row justify-content-center" id="login-row">
+                    <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 my-auto2">
+                        <form class="card form-container" action="Fabian" method="POST">
+                            <div class="form-group">
+                                    <label> New E-mail </label>
+                                    <input type="text" class="form-control" id="email" placeholder="New E-mail" required="">
+                            </div>
+                                <button class="btn btn-secondary btn-block but1" type="submit">Next</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- End of Change Email -->
+
+    <!-- Make Identitas Section as Default -->
+    <script>
+        var x = document.getElementsByTagName("section");
+        for (let i = 0; i < x.length; i++) {
+            const element = x[i];
+            element.style.display = "none";
+        }
+        document.getElementById("token").style.display = "block";
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<form action = "/users/voting" method = "POST">
+    <div class="container-fluid" id="voting-page">
+        <% include ./partials/messages %>
+        <div class="row justify-content-center">
+            <label id="label1">
+                <input type="radio" name="product" class="card-input-element" value = "Fanniaty Putri"/>
+                <div class="card1 card-input" style="width:290px;height:530px;">
+                <div class="card2 card-input" align="center" style="width:260px;height:420px;">
+                    <img class="card-img-top" src="/images/calon1.png" alt="Card image">
+                    <div class="card-body">
+                        <h4 align="center" class="card-title">Fanniaty Putri</h4>
+                        <h1 align="center" class="card-text1">No. 1</h1>
+                    </div>
+                </div>
+                </div>
+            </label>
+
+            <div id="outer">
+                <button class="btn btn-secondary butt" type="submit" id="inner">Submit</button>
+            </div>
+        
+            <label id="label1">
+                <input type="radio" name="product" class="card-input-element" />
+                <div class="card1 card-input" style="width:290px;height:530px;">
+                <div class="card2 card-input" align="center" style="width:260px;height:420px;">
+                    <img class="card-img-top" src="/images/calon2.png" alt="Card image" value = "Nopia Indrianingsih Simangungsong">
+                    <div class="card-body">
+                        <h5 align="center" class="card-title">Nopia Indrianingsih Simangunsong</h5>
+                        <h1 align="center" class="card-text2">No. 2</h1>
+                    </div>
+                </div>
+                </div>
+            </label>
+        </div>
+    
+    </div>
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+</form>

@@ -7,15 +7,21 @@ const UserSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique : false
   },
-  password: {
+  nrp: {
+    type: String,
+    required: true,
+    unique : true
+  },
+  token : {
     type: String,
     required: true
   },
-  date: {
-    type: Date,
-    default: Date.now
+  memilih : {
+    type : Boolean,
+    required : false
   }
 });
 

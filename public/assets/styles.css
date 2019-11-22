@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,600&display=swap");
+@font-face {
+  font-family: 'Odin';
+  src: url("../fonts/odin.eot");
+  src: url("../fonts/odin.eot") format("embedded-opentype"), 
+       url("../fonts/odin.woff2") format("woff2"), 
+       url("../fonts/odin.woff") format("woff"), 
+       url("../fonts/odin.ttf") format("truetype"), 
+       url("../fonts/odin.svg#odin") format("svg");
+}
+
+@font-face {
+  font-family: 'coolvetica';
+  src: url('../fonts/coolvetica_rg-webfont.eot');
+  src: url('../fonts/coolvetica_rg-webfont.eot') format('embedded-opentype'),
+       url('../fonts/coolvetica_rg-webfont.woff2') format('woff2'),
+       url('../fonts/coolvetica_rg-webfont.woff') format('woff'),
+       url('../fonts/coolvetica_rg-webfont.ttf') format('truetype'),
+       url('../fonts/coolvetica_rg-webfont.svg#coolveticaregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  position: relative;
+}
+
+body {
+  margin-bottom: 100px;
+}
+
+section {
+  min-height: 100vh;
+}
+
+.card h3 {
+  font-family: 'Odin';
+}
+
+.red {
+  color: #E94B3E;
+}
+
+.form-group > label {
+  font-family: 'coolvetica';
+}
+
+#header {
+  background-color: rgba(255, 255, 255, 1);
+  color: black;
+  font-family: 'Odin';
+  position: fixed;
+  width: 100%;
+  height: 12%;
+  border-bottom-left-radius: 10% 10%;
+  border-bottom-right-radius: 10% 10%;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+#header img {
+  float: right;
+  margin-top: 5px;
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+}
+#header h3 {
+  float: left;
+  margin-right: 20px;
+  margin: 15px;
+}
+
+.my-auto1{
+  margin-top: 125px;
+}
+
+.my-auto2{
+  margin-top: 150px;
+}
+
+.form-container {
+  padding: 3vw;
+  -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+#login-row {
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+#login-page {
+  background: url("../images/1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.but1 {
+  border-radius: 43px;
+}
+
+#outer { 
+  text-align: center; 
+}
+
+#inner {
+  font-family: 'Odin';
+}
+
+#check {
+  font-family: 'coolvetica';
+  font-size: 16px;
+  color: #34495e;
+  padding: 0px;
+}
+
+#change {
+  font-family: 'Odin';
+  color: #3498db;
+  font-size: 14px;
+}
+
+#voting-page{
+  background: url("../images/2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+#done-page{
+  background: url("../images/3.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+#maintitle {
+  background-color: #fefefe;
+}
+
+.card1 {
+  background: #95a5a6;
+  margin: 10px;
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-right: 150px;
+  padding:5px;
+  border-radius: 20px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+}
+
+.card2 {
+  background: #2d3436;
+  border-radius: 20px;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+section {
+  min-height: 100vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+/**
+  Default Markup
+**/
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+/**
+  Component
+**/
+
+#label1{
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.card-input-element {
+  display: none;
+}
+
+.card-input {
+  margin: 5px;
+  padding: 10px;
+}
+
+.card-input:hover {
+  cursor: pointer;
+}
+
+.card-input-element:checked + .card-input {
+  background: #3498db;
+}
+
+.card-title{
+  color: white;
+  font-size: 26px;
+  font-family: 'coolvetica';
+}
+
+.card-text1{
+  font-family: 'Odin';
+  color: #2d3436;
+  margin-top: 80px;
+}
+
+.card-text2{
+  font-family: 'Odin';
+  color: #2d3436;
+  margin-top: 50px;
+}
+
+.butt {
+  margin-top: 220px;
+  background-color: #ecf0f1;
+  font-size: 24px;
+  border-radius: 50px;
+  height:150px;
+  width: 150px;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+  cursor:pointer;
+}
+
+.butt:hover {
+  background-color: #9b59b6;
+  color:white;
+}
+
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	background-color: #333;
+	padding-top: 30px;
+}
+
+footer p {
+	color: #aaa;
+	font-size: 0.9;
+}
+/*# sourceMappingURL=styles.css.map */

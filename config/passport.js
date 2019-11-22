@@ -6,24 +6,40 @@ const User = require('../models/User');
 
 module.exports = function(passport) {
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    new LocalStrategy({ 
+      usernameField : 'name',
+      passwordField : 'token',
+      passReqToCallback : true 
+    }, (req, email, password, done) => {
       // Match user
+      // console.log(req.body.name);
       User.findOne({
-        email: email
+        name : req.body.name, 
+        email: req.body.email,
+        nrp : req.body.nrp,
+        token : req.body.token
       }).then(user => {
+        console.log(user);
         if (!user) {
-          return done(null, false, { message: 'That email is not registered' });
+          return done(null, false, { message: 'Wrong credentials' });
         }
 
-        // Match password
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-          if (err) throw err;
-          if (isMatch) {
-            return done(null, user);
-          } else {
-            return done(null, false, { message: 'Password incorrect' });
-          }
-        });
+        if (user.memilih) {
+          return done(null, false, { message : 'Anda sudah memilih'});
+        }
+        // if (user.name === 'Fabian') {
+        //   return done(null, false, {message : 'Admin is not allowed'});
+        // }
+        return done(null, user);
+        // bcrypt.compare(password, user.password, (err, isMatch) => {
+        //   if (!err) {
+        //     if (isMatch) {
+        //       return done(null, user);
+        //     } else {
+        //       return done(null, false, { message: 'Password incorrect' });
+        //     }
+        //   }
+        // });
       });
     })
   );

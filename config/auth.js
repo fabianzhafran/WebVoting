@@ -3,13 +3,34 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     }
-    req.flash('error_msg', 'Please log in to view that resource');
+    req.flash('error_msg', 'Tolong log-in terlebih dahulu.');
     res.redirect('/users/login');
+  },
+  ensureNotVoted : async function(req, res, next) {
+    console.log(req.user);
+    if (!req.user.memilih && req.user.name !== 'admin' && req.user.nrp !== -1) {
+      return next();
+    }
+    if (req.user.name === 'admin' && req.user.nrp === -1) {
+      req.flash('error_msg', 'Anda adalah admin');
+      res.redirect('/dashboard');
+    } else {
+      req.flash('error_msg', 'Anda sudah memilih.');
+      res.redirect('/users/voting')
+    }
   },
   forwardAuthenticated: function(req, res, next) {
     if (!req.isAuthenticated()) {
       return next();
     }
-    res.redirect('/dashboard');      
+    res.redirect('/users/voting');      
+  },
+  adminAuthenticated : function (req, res, next) {
+    if (req.user.name == 'admin' && req.user.nrp === '-1') {
+      return next();
+    }
+    req.flash('error_msg', 'Anda bukan admin');
+    res.redirect('/users/voting');
   }
 };
+ 

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const path = require('path');
 
 const app = express();
 
@@ -11,23 +12,28 @@ const app = express();
 require('./config/passport')(passport);
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+require('./db/mongoose');
+// const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+// mongoose
+//   .connect(
+//     db,
+//     { useNewUrlParser: true }
+//   )
+//   .then(() => console.log('MongoDB Connected'))
+//   .catch(err => console.log(err));
 
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+app.use(express.json());
 
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
+
+// Static
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Express session
 app.use(

@@ -1,3 +1,12 @@
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome <%= user.name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<div class="container-fluid" id="login-page">
+    <div class="row justify-content-center" id="login-row">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 my-auto2">
+            <h1 class="mt-4">Dashboard</h1>
+            <% include ./partials/messages %>
+            <p class="lead mb-3">Welcome <%= user.name %></p>
+            <p>Pemilih Fanniaty : <%= countFanniaty %></p>
+            <p>Pemilih Nopia : <%= countNopia %></p>
+            <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </div> 
+</div>

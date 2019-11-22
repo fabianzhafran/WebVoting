@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Odin';
+  src: url("fonts/odin.eot");
+  src: url("fonts/odin.eot") format("embedded-opentype"), url("fonts/odin.woff2") format("woff2"), url("fonts/odin.woff") format("woff"), url("fonts/odin.ttf") format("truetype"), url("fonts/odin.svg#odin") format("svg");
+}
+/*# sourceMappingURL=fonts.css.map */
