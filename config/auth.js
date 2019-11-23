@@ -25,8 +25,16 @@ module.exports = {
     }
     res.redirect('/users/voting');      
   },
+  voterAuthenticated : function(req, res, next) {
+    if (req.user.name !== 'admin') {
+      req.user.memilih = true;
+      return next();
+    }
+    req.flash('error_msg', 'Admin tidak bisa mengakses page voting.');
+    res.redirect('/dashboard');
+  },
   adminAuthenticated : function (req, res, next) {
-    if (req.user.name == 'admin' && req.user.nrp === '-1') {
+    if (req.user.name === 'admin' && req.user.nrp === '-1') {
       return next();
     }
     req.flash('error_msg', 'Anda bukan admin');

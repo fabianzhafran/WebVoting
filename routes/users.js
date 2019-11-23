@@ -3,19 +3,16 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const EmailService = require('../emails/account');
-// Load User model
+// Load User and Pilihan model
 const User = require('../models/User');
 const Pilihan = require('../models/Votee');
-const { forwardAuthenticated, ensureAuthenticated, ensureNotVoted } = require('../config/auth');
+const { forwardAuthenticated, ensureAuthenticated, ensureNotVoted, voterAuthenticated } = require('../config/auth');
 
 // Random string generator
 const makeString = require('../js/randomString');
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
-
-// Register Page
-// router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 // Register
 router.post('/register', (req, res) => {
@@ -45,7 +42,7 @@ router.post('/register', (req, res) => {
           nrp
         });
       } else {
-        
+
         let token = makeString(10);
 
         console.log(token);
@@ -73,42 +70,53 @@ router.post('/register', (req, res) => {
   }
 });
 
-// Login
-router.post('/login', (req, res, next) => {
-  // console.log(req.body);
+// Login POST method
+router.post('/login', 
   passport.authenticate('local', {
     failureRedirect: '/users/login',
-    successRedirect: '/users/voting',
-    failureFlash: true
-  }) (req, res, next);
-});
+    failureFlash : true
+  }), (req, res) => {
+    if (req.user.name === 'admin') {
+      res.redirect('/dashboard');
+    }
+    if (req.user.isAdmin !== 'admin') {
+      res.redirect('/users/voting');
+    }
+  }
+);
 
 // Logout
-router.get('/logout', ensureAuthenticated,  (req, res) => {
+router.get('/logout', ensureAuthenticated, (req, res) => {
+  if (req.user.name !== 'admin') {
+    req.flash('success_msg', 'You have voted!');
+  }
   req.logout();
-  req.flash('success_msg', 'You have voted!');
   res.redirect('/users/login');
 });
 
-// Voting
-router.get('/voting', ensureAuthenticated, (req, res) => {
+// Voting Page
+router.get('/voting', ensureAuthenticated,  voterAuthenticated, (req, res) => {
   res.render('vote');
 })
 
-router.post('/voting', ensureAuthenticated, ensureNotVoted, async (req, res) => {
+// Voting POST
+router.post('/voting', ensureAuthenticated, ensureNotVoted, voterAuthenticated, async (req, res) => {
   try {
     console.log(req.body);
     console.log(req.user);
+    let username = req.user.name;
     const pilihan = await new Pilihan({
       pilihan : req.body.product,
       pemilih : req.user.name
     });
     await pilihan.save();
-    req.user.memilih = true;
     await req.user.save();
 
-    req.flash('success_msg', `Anda telah memilih!`);
-    res.redirect('/users/logout');
+    req.logout();
+    // console.log('ANJING');
+    res.render('done', {
+      name : username
+    });
   } catch (e) {
     console.log(e);
     res.render('vote', {

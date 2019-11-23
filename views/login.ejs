@@ -2,7 +2,7 @@
 <div id="header">
     <img src="/images/logo.png" alt="logo" />
     <img src="/images/logo2.png" alt="logo" />
-    <h3>e-Vote Psikologi Universitas Kristen Maranatha</h3>
+    <h2>e-Vote Psikologi Universitas Kristen Maranatha</h2>
 </div>
 
 <section id='identitas'>
@@ -21,29 +21,29 @@
                             id="name"
                             name="name"
                             class="form-control"
-                        placeholder="Enter Name"
+                        placeholder="Masukkan Nama Lengkap"
                         value="<%= typeof name != 'undefined' ? name : '' %>"
                     />
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">E-mail</label>
                         <input
                             type="email"
                             id="email"
                             name="email"
                             class="form-control"
-                            placeholder="Enter Email"
+                            placeholder="Masukkan E-mail"
                         value="<%= typeof email != 'undefined' ? email : '' %>"
                     />
                     </div>
                     <div class="form-group">
-                        <label for="nrp">NRP</label>
+                        <label for="nrp">NRP/NIK</label>
                         <input
                             type="nrp"
                             id="nrp"
                             name="nrp"
                             class="form-control"
-                            placeholder="Enter NRP"
+                            placeholder="Masukkan NRP/NIK"
                             value="<%= typeof nrp != 'undefined' ? nrp : '' %>"
                         />
                     </div>
@@ -53,8 +53,9 @@
                             type="token"
                             id="token"
                             name="token"
+                            autocomplete="off"
                             class="form-control"
-                            placeholder="Enter Secret Token"
+                            placeholder="Masukkan Token Rahasia"
                             value="<%= typeof token != 'undefined' ? token : '' %>"
                         />
                     </div>
