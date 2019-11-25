@@ -21,12 +21,16 @@
   font-style: normal;
 }
 
-html {
-  position: relative;
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
 }
 
-body {
-  margin-bottom: 100px;
+html {
+  position: relative;
 }
 
 section {
@@ -56,6 +60,7 @@ section {
   border-bottom-right-radius: 10% 10%;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
   padding: 10px;
+  z-index: 2;
 }
 
 #header img {
@@ -65,20 +70,56 @@ section {
   width: 60px;
   height: 60px;
   padding: 5px;
+  width: auto;
+  height: 100%;
 }
+
 #header h2 {
   margin-top: 40px;
   float: left;
   margin-right: 20px;
   margin: 15px;
+  overflow:hidden;
+  white-space:nowrap;
+  -ms-text-overflow:ellipsis;
+  text-overflow:ellipsis;
+  position: fixed;
+}
+
+.tes{
+  width: 300px;
+}
+
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.marquee span {
+  display: inline-block;
+  width: 100%;
+}
+.marquee span span {
+  transition: left 4s linear;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  left: 0px;
+}
+.marquee:active span, .marquee:hover span {
+  width: auto;
+}
+.marquee:active span span, .marquee:hover span span {
+  left: calc(300px - 15px - 100%);
 }
 
 .my-auto1{
-  margin-top: 125px;
+  margin-top: 6rem;
 }
 
 .my-auto2{
-  margin-top: 150px;
+  margin-top: 6rem;
+  width: 100%; 
+  padding: auto;
 }
 
 .form-container {
@@ -86,6 +127,10 @@ section {
   -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
+  margin: auto;
+  width: auto;
+  height: 95%;
+  z-index: 1;
 }
 
 #login-row {
@@ -97,9 +142,8 @@ section {
   background: url("../images/1.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   background-size: cover;
-  min-height: 100vh;
-  max-height: 100vh;
 }
 
 .but1 {
@@ -198,8 +242,13 @@ input[type=number] {
 
 #label1{
   margin-top: 20px;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.card {
+  border-radius: 43px;
+  background: white;
 }
 
 .card-input-element {
@@ -239,7 +288,7 @@ input[type=number] {
 
 .butt {
   margin-top: 220px;
-  background-color: #ecf0f1;
+  background-color: #7f8c8d;
   font-size: 24px;
   border-radius: 50px;
   height:150px;
@@ -251,6 +300,33 @@ input[type=number] {
 .butt:hover {
   background-color: #9b59b6;
   color:white;
+}
+
+.piechart {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.card3 {
+  background: white;
+  padding: 2rem;
+  width: 100%;
+  margin-top: 3rem;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card4 {
+  background: white;
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card5 {
+  background: white;
+  padding: 3rem;
+  margin: 2rem;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 

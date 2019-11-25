@@ -1,5 +1,6 @@
+<body id="voting-page">
 <form action = "/users/voting" method = "POST">
-    <div class="container-fluid" id="voting-page">
+    <div class="container-fluid">
         <% include ./partials/messages %>
         <div class="row justify-content-center">
             <label id="label1">
@@ -16,7 +17,7 @@
             </label>
 
             <div id="outer">
-                <button class="btn btn-secondary butt" type="submit" id="inner">Submit</button>
+                <button class="btn butt" type="submit" id="inner">Submit</button>
             </div>
         
             <label id="label1">
@@ -32,7 +33,6 @@
                 </div>
             </label>
         </div>
-    
     </div>
-    <a href="/users/logout" class="btn btn-secondary">Logout</a>
 </form>
+</body>

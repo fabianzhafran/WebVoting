@@ -1,12 +1,81 @@
+<body id="login-page">
 <div class="container-fluid" id="login-page">
     <div class="row justify-content-center" id="login-row">
-        <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 my-auto2">
+        <div class="col-sm-offset-1 col-sm-4">
+            <div class="card card4" style="width:290px;height:530px;">
             <h1 class="mt-4">Dashboard</h1>
             <% include ./partials/messages %>
             <p class="lead mb-3">Welcome <%= user.name %></p>
             <p>Pemilih Fanniaty : <%= countFanniaty %></p>
             <p>Pemilih Nopia : <%= countNopia %></p>
+            <p id="Fan" hidden><%= countFanniaty %></p>
+            <p id="Nop" hidden><%= countNopia %></p>
             <a href="/users/logout" class="btn btn-secondary">Logout</a>
+            </div>
         </div>
+        <div class="col-sm-5">
+            <div class="card card3" id="piechart"></div>
+        </div>
+        <div class="row justify-content-center" id="login-row">
+        <div class="card card5" id="barchart_values"></div>
+    </div>
     </div> 
 </div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawPieChart);
+
+// Draw the chart and set the chart values
+function drawPieChart() {
+  var countFan = document.getElementById('Fan').value;
+  var countNop = document.getElementById('Nop').value;
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Fanniaty Putri', <%= countFanniaty %>],
+  ['Nopia Indrianingsih Simangunsong', <%= countNopia %>],
+]);
+    console.log(countFan);
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Hasil Voting', 'width':500, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var countFan = document.getElementById('Fan').value;
+      var countNop = document.getElementById('Nop').value;
+      var data = google.visualization.arrayToDataTable([
+        ["Calon", "Voters", { role: "style" } ],
+        ['Fanniaty Putri', <%= countFanniaty %>, "blue"],
+        ['Nopia Indrianingsih Simangunsong', <%= countNopia %>, "red"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Hasil Voting",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+  }
+</script>
+</body>
