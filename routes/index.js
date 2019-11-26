@@ -10,7 +10,7 @@ router.get('/', forwardAuthenticated, (req, res) => {
 });
 
 
-router.post('/json_user/rahasia/banget/banget/banget/gelo/siah', async (req, res) => {
+router.get('/json_user/rahasia/banget/banget/banget/gelo/siah', async (req, res) => {
   const json_to_send = [
     {"NRP":"1330021","Nama":"ALIA FALIH BARMAWIDJAJA"},
     {"NRP":"1330034","Nama":"GIAN BARINGIN ROLINO NOACH"},
