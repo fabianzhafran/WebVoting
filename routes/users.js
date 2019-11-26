@@ -54,7 +54,9 @@ router.post('/register', async (req, res) => {
         });
       } else {
         const nrp_data = await fetch('https://voting-maranatha.herokuapp.com/json_user/rahasia/banget/banget/banget/gelo/siah')
+        console.log(nrp_data)
         const search_result = search(nrp, name, nrp_data)
+        console.log(search_result)
         if (search_result) {
           let token = makeString(10);
 
