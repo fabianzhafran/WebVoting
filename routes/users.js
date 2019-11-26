@@ -9,7 +9,7 @@ const Pilihan = require('../models/Votee');
 const { forwardAuthenticated, ensureAuthenticated, ensureNotVoted, voterAuthenticated } = require('../config/auth');
 
 // Search nrp for validation
-function search(NRP, Nama, myArray){
+async function search(NRP, Nama, myArray){
   for (var i=0; i < myArray.length; i++) {
       if (myArray[i].Nama === Nama && myArray[i].NRP === NRP) {
           return myArray[i];
@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
       nrp
     });
   } else {
-    User.findOne({ email : email }).then(user => {
+    User.findOne({ email : email }).then(async user => {
       if (user) {
         errors.push({ msg: 'Sudah ada pengguna dengan email itu.' });
         res.render('register', {
