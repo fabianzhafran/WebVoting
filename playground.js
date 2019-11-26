@@ -1,17 +1,4 @@
-const express = require('express');
-const router = express.Router();
-const { ensureAuthenticated, forwardAuthenticated, adminAuthenticated } = require('../config/auth');
-const Pilihan = require('../models/Votee');
-
-// Welcome Page
-router.get('/', forwardAuthenticated, (req, res) => {
-  res.render('register');
-  console.log('yes');
-});
-
-
-router.post('/json_user/rahasia/banget/banget/banget/gelo/siah', async (req, res) => {
-  const json_to_send = [
+array_of_json = [
     {"NRP":"1330021","Nama":"ALIA FALIH BARMAWIDJAJA"},
     {"NRP":"1330034","Nama":"GIAN BARINGIN ROLINO NOACH"},
     {"NRP":"1330037","Nama":"INGGRID SETIANINGSIH"},
@@ -690,36 +677,19 @@ router.post('/json_user/rahasia/banget/banget/banget/gelo/siah', async (req, res
     {"NRP":"1930126","Nama":"ANDINI LEILANI WIDYA PUTRI"},
     {"NRP":"1930127","Nama":"FIKRI FEBRIANSYAH"},
     {"NRP":"1930128","Nama":"SEMMAPALARA SOLICHIN PUTRI"}
-    ]
-  res.send(json_to_send)
-})
+]
 
-// Dashboard
-router.get('/dashboard', ensureAuthenticated, adminAuthenticated, async (req, res) => {
-  try { 
-    let countFanniaty = 0;
-    let countNopia = 0;
+function search(NRP, Nama, myArray){
+    for (var i=0; i < myArray.length; i++) {
+        if (myArray[i].Nama === Nama && myArray[i].NRP === NRP) {
+            return myArray[i];
+        }
+    }
+    return null
+}
 
+const searchRes = search("1930127", "FIKRI FEBRIANSYAH", array_of_json)
+if (searchRes) {
+    console.log(searchRes)
+}
 
-    const pilihanFanniaty = await Pilihan.countDocuments({ pilihan : 'Fanniaty Putri'}, (err, count) => {
-      console.log('~~~~~~~PILIHAN LOGS~~~~~~~');
-      console.log('Fanniaty : ' + count);
-      countFanniaty = count;
-    });
-    const pilihanNopia = await Pilihan.countDocuments({ pilihan : 'on'}, (err, count) => {
-      console.log('Nopia  : ' + count);
-      countNopia = count;
-    });  
-
-    res.render('dashboard', {
-      user: req.user,
-      countFanniaty : countFanniaty,
-      countNopia : countNopia
-    });
-  } catch (e) {
-    console.log(e);
-    res.send(e);
-  }
-});
-
-module.exports = router;

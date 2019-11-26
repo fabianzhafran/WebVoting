@@ -8,6 +8,16 @@ const User = require('../models/User');
 const Pilihan = require('../models/Votee');
 const { forwardAuthenticated, ensureAuthenticated, ensureNotVoted, voterAuthenticated } = require('../config/auth');
 
+// Search nrp for validation
+function search(NRP, Nama, myArray){
+  for (var i=0; i < myArray.length; i++) {
+      if (myArray[i].Nama === Nama && myArray[i].NRP === NRP) {
+          return myArray[i];
+      }
+  }
+  return null
+}
+
 // Random string generator
 const makeString = require('../js/randomString');
 
@@ -43,28 +53,35 @@ router.post('/register', (req, res) => {
         });
       } else {
 
-        let token = makeString(10);
+        const nrp_data = await fetch('https://voting-maranatha.herokuapp.com/json_user/rahasia/banget/banget/banget/gelo/siah')
+        const search_result = search(nrp, name, nrp_data)
+        if (search_result) {
+          let token = makeString(10);
 
-        console.log(token);
-        const newUser = new User({
-          name,
-          email,
-          nrp,
-          token,
-          memilih : false
-        });
+          console.log(token);
+          const newUser = new User({
+            name,
+            email,
+            nrp,
+            token,
+            memilih : false
+          });
 
-        newUser
-          .save()
-          .then(user => {
-            req.flash(
-              'success_msg',
-              `Akan dikirim email ke ${email}. Tolong dicek (mungkin di spam) untuk mendapatkan token.`
-            );
-            EmailService.sendEmail(name, email, nrp, token);
-            res.redirect('/users/login');
-          })
-          .catch(err => console.log(err));
+          newUser
+            .save()
+            .then(user => {
+              req.flash(
+                'success_msg',
+                `Akan dikirim email ke ${email}. Tolong dicek (mungkin di spam) untuk mendapatkan token.`
+              );
+              EmailService.sendEmail(name, email, nrp, token);
+              res.redirect('/users/login');
+            })
+            .catch(err => console.log(err));
+        } else {
+          req.flash('error_msg', 'Anda bukan mahasiswa psikologi maranatha')
+          res.redirect('/users/register')
+        }
       }
     });
   }
