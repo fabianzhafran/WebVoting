@@ -25,7 +25,7 @@ const makeString = require('../js/randomString');
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 // Register
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   // console.log(req.body);
   const { name, email, nrp } = req.body;
   let errors = [];
@@ -52,7 +52,6 @@ router.post('/register', (req, res) => {
           nrp
         });
       } else {
-
         const nrp_data = await fetch('https://voting-maranatha.herokuapp.com/json_user/rahasia/banget/banget/banget/gelo/siah')
         const search_result = search(nrp, name, nrp_data)
         if (search_result) {
