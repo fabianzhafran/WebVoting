@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const fetch = require('node-fetch');
 const EmailService = require('../emails/account');
 // Load User and Pilihan model
 const User = require('../models/User');
