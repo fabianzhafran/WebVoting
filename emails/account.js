@@ -6,7 +6,7 @@ sgMail.setApiKey(sendGridKey);
 const sendEmail = (name, email, nrp, token) => {
     sgMail.send({
         to : email,
-        from : 'fabianzhafransyahharahap@gmail.com',
+        from : 'semapsimcu@yahoo.com',
         subject : `Voting Psikologi Maranatha`,
         text : `Nama    : ${name}\n Email   : ${email}\n NRP    : ${nrp}\n Token login anda : ${token}\n Silakan gunakan untuk login dan voting.`
     })
