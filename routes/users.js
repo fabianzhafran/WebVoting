@@ -10,7 +10,7 @@ const Pilihan = require('../models/Votee');
 const { forwardAuthenticated, ensureAuthenticated, ensureNotVoted, voterAuthenticated } = require('../config/auth');
 
 // Search nrp for validation
-async function search(NRP, Nama, myArray){
+function search(NRP, Nama, myArray){
   for (var i=0; i < myArray.length; i++) {
       if (myArray[i].Nama === Nama && myArray[i].NRP === NRP) {
           return myArray[i];
@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
           nrp
         });
       } else {
-        const nrp_data = await fetch('https://voting-maranatha.herokuapp.com/json_user/rahasia/banget/banget/banget/gelo/siah')
+        const nrp_data = await fetch('https://voting-maranatha.herokuapp.com/json_user/rahasia/banget/banget/banget/gelo/siah').then((res) => {return res.json()})
         console.log(nrp_data)
         const search_result = search(nrp, name, nrp_data)
         console.log(search_result)
@@ -82,7 +82,7 @@ router.post('/register', async (req, res) => {
             .catch(err => console.log(err));
         } else {
           req.flash('error_msg', 'Anda bukan mahasiswa psikologi maranatha')
-          res.redirect('/users/register')
+          res.redirect('/')
         }
       }
     });
